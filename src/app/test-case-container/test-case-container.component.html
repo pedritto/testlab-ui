@@ -1,0 +1,23 @@
+<div class="testCaseContainer">
+  <app-test-case-filter
+    (onFilterApplied)="onFilter($event)"
+    (onNewTestCase)="onNew($event)"
+    [categories]="categories">
+
+  </app-test-case-filter>
+  <div *ngIf="newTestCase">
+    <app-test-case-row
+      [testCase]="newTestCase"
+      [editMode]="true"
+      [categories]="categories"
+      (onMutationDone)="onReload($event)">
+    </app-test-case-row>
+  </div>
+  <div *ngFor="let testCase of testCases">
+    <app-test-case-row
+      [testCase]="testCase"
+      [categories]="categories"
+      (onMutationDone)="onReload($event)">
+    </app-test-case-row>
+  </div>
+</div>

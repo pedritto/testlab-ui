@@ -1,0 +1,6 @@
+<div *ngIf="editMode" class="cancel" (click)="onCancel()"></div>
+<div *ngIf="editMode;else in_display_mode" class="save" (click)="onSave()"></div>
+<ng-template #in_display_mode>
+  <div class="edit" (click)="onEdit()"></div>
+  <div class="delete" (click)="onDelete()"></div>
+</ng-template>

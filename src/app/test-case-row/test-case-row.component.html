@@ -1,0 +1,20 @@
+<div class="testCaseRow">
+  <app-test-case
+    [testCase]="testCase"
+    [name]="testCase.name"
+    [description]="testCase.description"
+    [category]="testCase.category"
+    [editMode]="editMode"
+    [categories]="categories"
+  >
+    <app-action-buttons
+      class="actionButtons"
+      [editMode]="editMode"
+      (cancelEvent)="cancelTestCase()"
+      (deleteEvent)="deleteTestCase()"
+      (editEvent)="editTestCase()"
+      (saveEvent)="saveTestCase()"
+    >
+    </app-action-buttons>
+  </app-test-case>
+</div>

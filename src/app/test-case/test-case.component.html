@@ -1,0 +1,31 @@
+<div class="testCase">
+  <div class="testCaseNumber">{{testCase.number}}</div>
+
+  <div *ngIf="!editMode;else test_case_name_edit" class="testCaseName">
+    {{name}}
+  </div>
+  <ng-template #test_case_name_edit>
+    <input type="text" [(ngModel)]="name" class="testCaseName">
+  </ng-template>
+
+  <div *ngIf="!editMode;else test_case_description_edit" class="testCaseDescription">
+    {{description}}
+  </div>
+  <ng-template #test_case_description_edit>
+    <input type="text" [(ngModel)]="description" class="testCaseDescription">
+  </ng-template>
+
+  <div *ngIf="!editMode;else test_case_category_edit" class="testCaseCategory">
+    {{category && category.name}}
+  </div>
+  <ng-template #test_case_category_edit>
+    <select [(ngModel)]="category" class="testCaseCategory">
+      <option *ngFor="let c of categories" [ngValue]="c">{{c.name}}</option>
+    </select>
+  </ng-template>
+
+</div>
+<div class="testCaseActions">
+  <ng-content class="actionButtons"></ng-content>
+</div>
+

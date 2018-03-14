@@ -1,0 +1,10 @@
+<div class="testCaseFilter">
+  <div class="searchTitle">Search:</div>
+  <input type="text" maxlength="10" [(ngModel)]="searchText" (ngModelChange)="executeSearch()">
+  <div class="categoryTitle">Category:</div>
+  <select [(ngModel)]="selectedCategory" (ngModelChange)="executeSearch()">
+    <option [ngValue]="emptyOption"></option>
+    <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
+  </select>
+  <div class="newTestCase" (click)="onNew()"></div>
+</div>
