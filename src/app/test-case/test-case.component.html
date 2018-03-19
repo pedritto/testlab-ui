@@ -16,11 +16,11 @@
   </ng-template>
 
   <div *ngIf="!editMode;else test_case_category_edit" class="dib">
-    {{category && category.name}}
+    {{testCase.category && testCase.category.name}}
   </div>
   <ng-template #test_case_category_edit>
-    <select [(ngModel)]="category" class="dib">
-      <option *ngFor="let c of categories" [ngValue]="c">{{c.name}}</option>
+    <select [(ngModel)]="categoryId" class="dib">
+      <option *ngFor="let c of categories" [value]="c.id" [selected]="c.id == categoryId">{{c.name}}</option>
     </select>
   </ng-template>
 </div>

@@ -8,10 +8,9 @@ import { DELETE_TEST_CASES_MUTATION, UPDATE_TEST_CASES_MUTATION } from 'constant
 
 interface UpdatePayload {
   id: string,
-  number: string,
   name: string,
   description: string,
-  category: string
+  categoryId: string
 }
 
 @Component({
@@ -54,13 +53,12 @@ export class TestCaseRowComponent {
   }
 
   preparePayload() : UpdatePayload {
-    const { name, description, category } = this.testCaseComponent;
+    const { name, description, categoryId } = this.testCaseComponent;
     return {
       id: this.testCase.id || '0',
-      number: this.testCase.number,
       name,
       description,
-      category: category.id
+      categoryId
     }
   }
 

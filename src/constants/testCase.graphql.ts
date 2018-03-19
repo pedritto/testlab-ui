@@ -39,8 +39,8 @@ export const DELETE_TEST_CASES_MUTATION = gql`
 `;
 
 export const UPDATE_TEST_CASES_MUTATION = gql`
-  mutation UpdateTestCase($id: ID!, $number: String!, $name: String!, $description: String!, $category: ID!) {
-    updateTestCase(id: $id, number: $number, name: $name, description: $description, category: $category) {
+  mutation UpdateTestCase($id: ID!, $name: String!, $description: String!, $categoryId: ID!) {
+    updateTestCase(id: $id, name: $name, description: $description, categoryId: $categoryId) {
       id
     }
   }

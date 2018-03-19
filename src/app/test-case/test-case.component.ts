@@ -13,7 +13,7 @@ export class TestCaseComponent {
   @Input() testCase: TestCase;
   @Input() name: string;
   @Input() description: string;
-  @Input() category: Category;
+  @Input() categoryId: string;
   @Input() editMode: boolean;
   @Input() categories: Category[];
 
