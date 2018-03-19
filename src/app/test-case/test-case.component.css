@@ -1,27 +1,3 @@
-.testCase, .testCaseActions {
-  display: inline-block;
-}
 
-.testCase div {
-  display: inline-block;
-  margin-right: 5px;
-}
-
-.testCaseNumber {
-  font-weight: bold;
-  width: 50px;
-}
-
-.testCaseName {
-  width: 100px;
-}
-
-.testCaseDescription {
-  width: 120px;
-}
-
-.testCaseCategory {
-  width: 50px;
-}
 
 

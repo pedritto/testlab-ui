@@ -1,31 +1,31 @@
-<div class="testCase">
-  <div class="testCaseNumber">{{testCase.number}}</div>
+<div class="f6 w-80 dib">
+  <div class="b w-10 dib">{{testCase.number}}</div>
 
-  <div *ngIf="!editMode;else test_case_name_edit" class="testCaseName">
+  <div *ngIf="!editMode;else test_case_name_edit" class="w-33 dib">
     {{name}}
   </div>
   <ng-template #test_case_name_edit>
-    <input type="text" [(ngModel)]="name" class="testCaseName">
+    <input type="text" [(ngModel)]="name" class="w-33 dib">
   </ng-template>
 
-  <div *ngIf="!editMode;else test_case_description_edit" class="testCaseDescription">
+  <div *ngIf="!editMode;else test_case_description_edit" class="w-33 dib">
     {{description}}
   </div>
   <ng-template #test_case_description_edit>
-    <input type="text" [(ngModel)]="description" class="testCaseDescription">
+    <input type="text" [(ngModel)]="description" class="w-33 dib">
   </ng-template>
 
-  <div *ngIf="!editMode;else test_case_category_edit" class="testCaseCategory">
+  <div *ngIf="!editMode;else test_case_category_edit" class="dib">
     {{category && category.name}}
   </div>
   <ng-template #test_case_category_edit>
-    <select [(ngModel)]="category" class="testCaseCategory">
+    <select [(ngModel)]="category" class="dib">
       <option *ngFor="let c of categories" [ngValue]="c">{{c.name}}</option>
     </select>
   </ng-template>
-
 </div>
-<div class="testCaseActions">
+
+<div class="w-10 dib fr">
   <ng-content class="actionButtons"></ng-content>
 </div>
 

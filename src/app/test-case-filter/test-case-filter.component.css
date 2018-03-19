@@ -1,28 +1,5 @@
-.testCaseFilter {
-  padding-bottom: 15px;
-  border-bottom: 1px solid gray;
-}
-
-input {
-  width: 100px;
-  margin-right: 55px;
-}
-
-div {
-  display: inline-block;
-}
-
-.searchTitle {
-  width: 50px;
-}
-
-.categoryTitle {
-  width: 70px;
-}
-
 .newTestCase {
-  background-image: url("assets/add-document.png");
-  margin-left: 36px;
+  background-image: url("../../assets/add-document.png");
   height: 24px;
   width: 24px;
 }

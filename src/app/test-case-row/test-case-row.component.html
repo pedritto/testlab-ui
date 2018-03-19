@@ -1,4 +1,4 @@
-<div class="testCaseRow">
+<div class="w-100 mt2">
   <app-test-case
     [testCase]="testCase"
     [name]="testCase.name"
@@ -7,8 +7,7 @@
     [editMode]="editMode"
     [categories]="categories"
   >
-    <app-action-buttons
-      class="actionButtons"
+    <app-action-buttons class="fr"
       [editMode]="editMode"
       (cancelEvent)="cancelTestCase()"
       (deleteEvent)="deleteTestCase()"
