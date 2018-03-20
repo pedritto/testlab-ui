@@ -31,7 +31,9 @@ export class TestCaseRowComponent {
 
   @Input() testCase: TestCase;
   @Input() editMode: boolean = false;
+  @Input() editable: boolean = true;
   @Input() categories: Category[];
+  @Output() onEditMode = new EventEmitter();
   @Output() onMutationDone = new EventEmitter();
   @ViewChild(TestCaseComponent) testCaseComponent;
 
@@ -58,7 +60,10 @@ export class TestCaseRowComponent {
   }
 
   editTestCase() {
-    this.editMode = true;
+    if(this.editable) {
+      this.editMode = true;
+      this.onEditMode.emit();
+    }
   }
 
   prepareUpdatePayload() : UpdatePayload {

@@ -17,6 +17,8 @@
     <app-test-case-row
       [testCase]="testCase"
       [categories]="categories"
+      [editable]="editable"
+      (onEditMode)="disableEditMode()"
       (onMutationDone)="onReload($event)">
     </app-test-case-row>
   </div>

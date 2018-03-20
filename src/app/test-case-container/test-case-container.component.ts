@@ -20,6 +20,7 @@ export class TestCaseContainerComponent implements OnInit {
   testCases: TestCase[] = [];
   newTestCase: TestCase = null;
   categories: Category[] = [];
+  editable: boolean = true;
   @ViewChild(TestCaseFilterComponent) testCaseFilterComponent;
 
   constructor(private apollo: Apollo) {
@@ -53,10 +54,16 @@ export class TestCaseContainerComponent implements OnInit {
   onReload() {
     this.testCaseFilterComponent.executeSearch();
     this.newTestCase = null;
+    this.editable = true;
   }
 
   onNew() {
     this.newTestCase = this.buildNewTestCase();
+    this.editable = false;
+  }
+
+  disableEditMode() {
+    this.editable = false;
   }
 
   buildNewTestCase(): TestCase {
