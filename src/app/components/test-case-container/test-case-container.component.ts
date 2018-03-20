@@ -1,14 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Apollo } from 'apollo-angular';
 
 import { Category } from 'types/category'
 import { TestCase } from 'types/testCase'
 import { TestCaseFilter } from 'types/testCaseFilter';
 
-import { TestCaseFilterComponent } from '../test-case-filter/test-case-filter.component'
+import { TestCaseService } from 'app/services/graphql/test-case.service';
+import { CategoryService } from 'app/services/graphql/category.service';
 
-import { ALL_TEST_CASES_QUERY, FILTERED_TEST_CASES_QUERY } from 'constants/testCase.graphql';
-import { ALL_CATEGORIES_QUERY } from 'constants/category.graphql'
+import { TestCaseFilterComponent } from '../test-case-filter/test-case-filter.component'
 
 @Component({
   selector: 'app-test-case-container',
@@ -23,32 +22,26 @@ export class TestCaseContainerComponent implements OnInit {
   editable: boolean = true;
   @ViewChild(TestCaseFilterComponent) testCaseFilterComponent;
 
-  constructor(private apollo: Apollo) {
+  constructor(private categoryService: CategoryService, private testCaseService: TestCaseService) {
   }
 
   ngOnInit() {
-    this.apollo.watchQuery({
-      query: ALL_TEST_CASES_QUERY
-    }).valueChanges.subscribe((response: any) => {
-      this.testCases = response.data.findAllTestCases;
-    });
+    this.testCaseService.fetchTestCases()
+      .subscribe((testCases: TestCase[]) => {
+        this.testCases = testCases;
+      });
 
-    this.apollo.watchQuery({
-      query: ALL_CATEGORIES_QUERY
-    }).valueChanges.subscribe((response: any) => {
-      this.categories = response.data.findAllCategories;
-    });
+    this.categoryService.fetchCategories()
+      .subscribe((categories: Category[]) => {
+        this.categories = categories;
+      });
   }
 
   onFilter(testCaseFilter: TestCaseFilter) {
-    this.apollo.watchQuery({
-      query: FILTERED_TEST_CASES_QUERY,
-      variables: {
-        filter: testCaseFilter
-      },
-    }).valueChanges.subscribe((response: any) => {
-      this.testCases = response.data.filterTestCases;
-    });
+    this.testCaseService.filterTestCases(testCaseFilter)
+      .subscribe((testCases: TestCase[]) => {
+        this.testCases = testCases;
+      });
   }
 
   onReload() {
