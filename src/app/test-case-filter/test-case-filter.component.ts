@@ -16,7 +16,7 @@ export class TestCaseFilterComponent implements OnInit {
   emptyOption = {id: '', name: ''};
   @Input() categories: Category[];
   @Output() onFilterApplied = new EventEmitter<TestCaseFilter>();
-  @Output() onNewTestCase = new EventEmitter<boolean>();
+  @Output() onNewTestCase = new EventEmitter();
 
   constructor(private apollo: Apollo) {
   }
@@ -33,7 +33,7 @@ export class TestCaseFilterComponent implements OnInit {
   }
 
   onNew() {
-    this.onNewTestCase.emit(true);
+    this.onNewTestCase.emit();
   }
 
   ngOnInit() {

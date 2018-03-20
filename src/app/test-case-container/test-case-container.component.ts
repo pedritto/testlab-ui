@@ -55,18 +55,21 @@ export class TestCaseContainerComponent implements OnInit {
     this.newTestCase = null;
   }
 
-  onNew(hasNew: boolean) {
-    if(hasNew) {
-      this.newTestCase = {
-        id: '',
-        number: 'T00X',
-        name: '',
-        description: '',
-        category: {
-          id: '',
-          name: ''
-        }
-      };
-    }
+  onNew() {
+    this.newTestCase = this.buildNewTestCase();
   }
+
+  buildNewTestCase(): TestCase {
+    return {
+      id: '',
+      number: '',
+      name: '',
+      description: '',
+      category: {
+        id: '',
+        name: ''
+      }
+    };
+  }
+
 }

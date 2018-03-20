@@ -4,7 +4,16 @@ import { Apollo } from 'apollo-angular';
 import { Category } from 'types/category'
 import { TestCaseComponent } from 'app/test-case/test-case.component';
 import { TestCase } from 'types/testCase';
-import { DELETE_TEST_CASES_MUTATION, UPDATE_TEST_CASES_MUTATION } from 'constants/testCase.graphql';
+import {
+  CREATE_TEST_CASES_MUTATION,
+  DELETE_TEST_CASES_MUTATION,
+  UPDATE_TEST_CASES_MUTATION } from 'constants/testCase.graphql';
+
+interface NewPayload {
+  name: string,
+  description: string,
+  categoryId: string
+}
 
 interface UpdatePayload {
   id: string,
@@ -52,28 +61,37 @@ export class TestCaseRowComponent {
     this.editMode = true;
   }
 
-  preparePayload() : UpdatePayload {
+  prepareUpdatePayload() : UpdatePayload {
     const { name, description, categoryId } = this.testCaseComponent;
+    const { id } = this.testCase;
     return {
-      id: this.testCase.id || '0',
+      id,
       name,
       description,
       categoryId
-    }
+    };
+  }
+
+  prepareCreatePayload() : NewPayload {
+    const { name, description, categoryId } = this.testCaseComponent;
+    return {
+      name,
+      description,
+      categoryId
+    };
   }
 
   saveTestCase() {
     this.editMode = false;
 
-    const variables: UpdatePayload = this.preparePayload();
-    this.apollo.mutate({
-      mutation: UPDATE_TEST_CASES_MUTATION,
-      variables
-    }).subscribe(
-      ({ data }) => {
-        this.onMutationDone.emit();
-      },
-      (error) => {}
+    const mutation = this.testCase.id ? UPDATE_TEST_CASES_MUTATION : CREATE_TEST_CASES_MUTATION;
+    const variables = this.testCase.id ? this.prepareUpdatePayload() : this.prepareCreatePayload();
+    this.apollo.mutate({ mutation, variables })
+      .subscribe(
+        ({ data }) => {
+          this.onMutationDone.emit();
+        },
+        (error) => {}
     );
   }
 
