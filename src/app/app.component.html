@@ -1,2 +1,17 @@
-<app-test-case-container></app-test-case-container>
+<div id="header" class="header w-100 pl3 mt4">
+  <div class="app-title f2 mb2">TestLab</div>
+  <nav class="pb1">
+    <div class="f4 w-10 dib">
+      <a routerLink="/testcases" routerLinkActive="active" class="route-link no-underline">Test Cases</a>
+    </div>
+    <div class="f4 w-10 dib">
+      <a routerLink="/testsuites" routerLinkActive="active" class="route-link no-underline">Test Suites</a>
+    </div>
+    <div class="f4 w-10 dib">
+      <a routerLink="/executions" routerLinkActive="active" class="route-link no-underline">Executions</a>
+    </div>
+  </nav>
+</div>
+<router-outlet></router-outlet>
+<router-outlet name="popup"></router-outlet>
 

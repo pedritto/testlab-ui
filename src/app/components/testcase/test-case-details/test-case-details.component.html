@@ -1,0 +1,33 @@
+<div class="w-33 pl3 mt3">
+  <div class="title f3 mb3">Test Case Detail</div>
+  <form class="test-case-form f4 pa3" [formGroup]="testCaseForm">
+    <div class="mb3">
+      <div class="w-20 dib"></div>
+      <div class="test-case-number w-30 dib ph2">{{ testCase && testCase.number }}</div>
+    </div>
+    <div class="mb3">
+      <label for="testCaseName" class="w-20 i tr dib">Name:</label>
+      <input id="testCaseName" class="w-60 f5 ph2" formControlName="name">
+    </div>
+    <div class="mb3">
+      <label for="testCaseDescription" class="w-20 i tr dib">Description:</label>
+      <input id="testCaseDescription" class="w-60 ph2 f5" formControlName="description">
+    </div>
+    <div class="category-input mb3 bb pb3">
+      <label for="testCaseCategory" class="w-20 i tr dib">Category:</label>
+      <select id="testCaseCategory" class="w-30 f5 ph2" formControlName="category">
+        <option *ngFor="let c of categories" [ngValue]="c" [selected]="c.id == selectedCategory.id">
+          {{c.name}}
+        </option>
+      </select>
+    </div>
+    <div>
+      <div class="w-20 dib"></div>
+      <a routerLink="/testcases" routerLinkActive="active" class="route-link no-underline">
+        <div class="test-case-done w-20 dib tc">Done</div>
+      </a>
+      <div class="w-20 dib"></div>
+      <div class="test-case-save w-20 dib tc" (click)="onSave()">Save</div>
+    </div>
+  </form>
+</div>

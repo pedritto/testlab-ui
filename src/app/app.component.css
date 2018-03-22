@@ -1,0 +1,15 @@
+.header {
+  background-color: #c2d4d8;
+}
+
+.app-title {
+  color: darkslategray;
+}
+
+a {
+  color: darkslategray;
+}
+
+a:hover{
+  color: #f2efe8;
+}

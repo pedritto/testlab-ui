@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+.title {
+  color: darkslategray;
+  border-bottom: solid 1px darkslategray;
+}
+
+input {
+  border: 1px solid #f2efe8;
+  border-radius: 5px;
+  color: darkslategray;
+}
+
+select {
+  border: 1px solid #f2efe8;
+  border-radius: 5px;
+  color: #b0aac2;
+}

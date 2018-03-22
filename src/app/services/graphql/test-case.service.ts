@@ -29,10 +29,26 @@ export class TestCaseService {
             findAllTestCases {
               ${TEST_CASE_STRUCTURE}
             }
-          }`
+          }`,
+        fetchPolicy: 'network-only'
       })
       .valueChanges
       .map((response: any) => response.data.findAllTestCases);
+  }
+
+  getTestCase(id: string) {
+    return this.apollo
+      .watchQuery({
+        query: gql`
+          query TestCaseQuery($id: ID!) {
+            findTestCase(id: $id) {
+              ${TEST_CASE_STRUCTURE}
+            }
+          }`,
+        variables: { id },
+      })
+      .valueChanges
+      .map((response: any) => response.data.findTestCase);
   }
 
   filterTestCases(filter) {
@@ -45,6 +61,7 @@ export class TestCaseService {
             }
           }`,
         variables: { filter },
+        fetchPolicy: 'network-only'
       })
       .valueChanges
       .map((response: any) => response.data.filterTestCases);
@@ -55,11 +72,12 @@ export class TestCaseService {
       mutation: gql`
         mutation CreateTestCase($name: String!, $description: String!, $categoryId: ID!) {
           newTestCase(name: $name, description: $description, categoryId: $categoryId) {
-            ${TEST_CASE_STRUCTURE}
+              ${TEST_CASE_STRUCTURE}
             }
           }`,
          variables
-    })
+      })
+      .map((response: any) => response.data.newTestCase);
   }
 
   deleteTestCase(id: string) {
@@ -81,8 +99,9 @@ export class TestCaseService {
             ${TEST_CASE_STRUCTURE}
           }
         }`,
-      variables
-    })
+        variables
+      })
+      .map((response: any) => response.data.updateTestCase);
   }
 
 }
