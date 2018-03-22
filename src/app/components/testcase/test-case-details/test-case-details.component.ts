@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/switchMap';
 import { of } from 'rxjs/observable/of';
@@ -20,7 +20,7 @@ export class TestCaseDetailsComponent implements OnInit {
   testCase: TestCase;
   testCaseForm: FormGroup;
   categories: Category[] = [];
-  selectedCategory = {};
+  selectedCategory;
   newTestCase = {
     id: '',
     number: 'Add New ...',
@@ -32,6 +32,8 @@ export class TestCaseDetailsComponent implements OnInit {
     }
   };
 
+  textPattern="^[a-zA-Z0-9\s ]+";
+
   constructor(
     private route: ActivatedRoute,
     private testCaseService: TestCaseService,
@@ -42,9 +44,10 @@ export class TestCaseDetailsComponent implements OnInit {
   }
 
   createForm() {
+    const textValidators = [Validators.required, Validators.pattern(this.textPattern)];
     this.testCaseForm = this.formBuilder.group({
-      name: '',
-      description: '',
+      name: ['', textValidators],
+      description: ['', textValidators],
       category: {}
     })
   }
@@ -78,6 +81,8 @@ export class TestCaseDetailsComponent implements OnInit {
     if (id) {
       return this.testCaseService.getTestCase(id);
     } else {
+      this.selectedCategory = this.categories[0];
+      this.newTestCase.category = this.selectedCategory;
       return of(this.newTestCase);
     }
   }
@@ -90,22 +95,44 @@ export class TestCaseDetailsComponent implements OnInit {
   }
 
   onSave() {
-    const { name, description, category } = this.testCaseForm.value;
-    const categoryId = category.id;
-    const { id } = this.testCase;
-    if(id) {
-      this.testCaseService
-        .updateTestCase({ id, name, description, categoryId })
-        .subscribe((testCase: TestCase) => {
-          this.testCase = testCase;
-        });
-    } else {
-      this.testCaseService
-        .createTestCase({ name, description, categoryId })
-        .subscribe((testCase: TestCase) => {
-          this.testCase = testCase;
-        });
+    if(this.validateForm()) {
+      const {name, description, category} = this.testCaseForm.value;
+      const categoryId = category.id;
+      const {id} = this.testCase;
+      if (id) {
+        this.testCaseService
+          .updateTestCase({id, name, description, categoryId})
+          .subscribe((testCase: TestCase) => {
+            this.testCase = testCase;
+          });
+      } else {
+        this.testCaseService
+          .createTestCase({name, description, categoryId})
+          .subscribe((testCase: TestCase) => {
+            this.testCase = testCase;
+          });
+      }
     }
+  }
+
+  validateForm() {
+    Object.keys(this.testCaseForm.controls).forEach(field => {
+      const control = this.testCaseForm.get(field);
+      control.markAsTouched({ onlySelf: true });
+    });
+    return this.testCaseForm.valid;
+  }
+
+  get name() {
+    return this.testCaseForm.get('name');
+  }
+
+  get description() {
+    return this.testCaseForm.get('description');
+  }
+
+  get category() {
+    return this.testCaseForm.get('category');
   }
 
 }

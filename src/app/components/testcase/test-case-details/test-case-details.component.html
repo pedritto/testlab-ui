@@ -5,18 +5,40 @@
       <div class="w-20 dib"></div>
       <div class="test-case-number w-30 dib ph2">{{ testCase && testCase.number }}</div>
     </div>
-    <div class="mb3">
+    <div>
       <label for="testCaseName" class="w-20 i tr dib">Name:</label>
       <input id="testCaseName" class="w-60 f5 ph2" formControlName="name">
     </div>
-    <div class="mb3">
+    <div class="f6 mb1 ph3">
+      <div class="w-20 dib"></div>
+      <div class="light-red w-60 dib">
+        <div *ngIf="name.errors && name.errors.required && name.touched">
+          This field is required
+        </div>
+        <div *ngIf="name.errors && name.errors.pattern">
+          Invalid
+        </div>
+      </div>
+    </div>
+    <div>
       <label for="testCaseDescription" class="w-20 i tr dib">Description:</label>
       <input id="testCaseDescription" class="w-60 ph2 f5" formControlName="description">
+    </div>
+    <div class="f6 mb1 ph3">
+      <div class="w-20 dib"></div>
+      <div class="light-red w-60 dib">
+        <div *ngIf="description.errors && description.errors.required && description.touched">
+          This field is required
+        </div>
+        <div *ngIf="description.errors && description.errors.pattern">
+          Invalid
+        </div>
+      </div>
     </div>
     <div class="category-input mb3 bb pb3">
       <label for="testCaseCategory" class="w-20 i tr dib">Category:</label>
       <select id="testCaseCategory" class="w-30 f5 ph2" formControlName="category">
-        <option *ngFor="let c of categories" [ngValue]="c" [selected]="c.id == selectedCategory.id">
+        <option *ngFor="let c of categories" [ngValue]="c" [selected]=" selectedCategory && c.id == selectedCategory.id">
           {{c.name}}
         </option>
       </select>
