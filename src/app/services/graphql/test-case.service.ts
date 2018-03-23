@@ -3,6 +3,8 @@ import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import 'rxjs/add/operator/map';
 
+import { TestCaseInput } from 'types/testCaseInput';
+
 const TEST_CASE_STRUCTURE = `
   id
   number
@@ -67,15 +69,17 @@ export class TestCaseService {
       .map((response: any) => response.data.filterTestCases);
   }
 
-  createTestCase(variables) {
+  createTestCase(input: TestCaseInput) {
     return this.apollo.mutate({
       mutation: gql`
-        mutation CreateTestCase($name: String!, $description: String!, $categoryId: ID!) {
-          newTestCase(name: $name, description: $description, categoryId: $categoryId) {
+         mutation CreateTestCase($input: TestCaseInput!) {
+          newTestCase(input: $input) {
               ${TEST_CASE_STRUCTURE}
             }
           }`,
-         variables
+         variables: {
+           input
+         }
       })
       .map((response: any) => response.data.newTestCase);
   }
@@ -91,15 +95,18 @@ export class TestCaseService {
     });
   }
 
-  updateTestCase(variables) {
+  updateTestCase(id: string, input: TestCaseInput) {
     return this.apollo.mutate({
       mutation: gql`
-        mutation UpdateTestCase($id: ID!, $name: String!, $description: String!, $categoryId: ID!) {
-          updateTestCase(id: $id, name: $name, description: $description, categoryId: $categoryId) {
+        mutation UpdateTestCase($id: ID!, $input: TestCaseInput!) {
+          updateTestCase(id: $id, input: $input) {
             ${TEST_CASE_STRUCTURE}
           }
         }`,
-        variables
+        variables: {
+          id,
+          input
+        }
       })
       .map((response: any) => response.data.updateTestCase);
   }

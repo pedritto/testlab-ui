@@ -5,8 +5,9 @@ import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/switchMap';
 import { of } from 'rxjs/observable/of';
 
-import { TestCase } from 'types/testCase'
-import { Category } from 'types/category'
+import { TestCase } from 'types/testCase';
+import { Category } from 'types/category';
+import { TestCaseInput } from 'types/testCaseInput';
 import { TestCaseService } from 'app/services/graphql/test-case.service';
 import { CategoryService } from 'app/services/graphql/category.service';
 
@@ -96,23 +97,28 @@ export class TestCaseDetailsComponent implements OnInit {
 
   onSave() {
     if(this.validateForm()) {
-      const {name, description, category} = this.testCaseForm.value;
-      const categoryId = category.id;
       const {id} = this.testCase;
       if (id) {
         this.testCaseService
-          .updateTestCase({id, name, description, categoryId})
+          .updateTestCase(id, this.prepareInput())
           .subscribe((testCase: TestCase) => {
             this.testCase = testCase;
           });
       } else {
         this.testCaseService
-          .createTestCase({name, description, categoryId})
+          .createTestCase(this.prepareInput())
           .subscribe((testCase: TestCase) => {
             this.testCase = testCase;
           });
       }
     }
+  }
+
+  prepareInput() : TestCaseInput {
+    const { name, description, category } = this.testCaseForm.value;
+    const categoryId = category.id;
+    const testCaseInput: TestCaseInput = { name, description, categoryId };
+    return testCaseInput;
   }
 
   validateForm() {
