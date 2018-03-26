@@ -6,11 +6,12 @@ import { AppRoutingModule }        from './app-routing.module';
 
 import {AppComponent} from './app.component';
 import {GraphQLModule} from './apollo.config';
-import { TestCaseService } from './services/graphql/test-case.service';
 import { CategoryService } from './services/graphql/category.service';
+import { TestCaseService } from './services/graphql/test-case.service';
+import { TestSuiteService } from './services/graphql/test-suite.service';
 
 import { TestCaseModule } from 'app/components/testcase/test-case.module';
-//import { FilterCommonComponent } from 'app/components/common/filter-common/filter-common.component';
+import { TestSuiteModule } from 'app/components/testsuite/test-suite.module';
 
 @NgModule({
   declarations: [
@@ -21,9 +22,10 @@ import { TestCaseModule } from 'app/components/testcase/test-case.module';
     BrowserModule,
     GraphQLModule,
     FormsModule,
-    TestCaseModule
+    TestCaseModule,
+    TestSuiteModule
   ],
-  providers: [TestCaseService, CategoryService],
+  providers: [CategoryService, TestCaseService, TestSuiteService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

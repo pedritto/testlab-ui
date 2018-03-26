@@ -1,0 +1,8 @@
+.new-item {
+  background-color: #c2d4d8;
+  color: darkslategray;
+}
+
+.new-item:hover {
+  background-color: #f2efe8;
+}

@@ -1,0 +1,18 @@
+import { NgModule }             from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+
+import { TestSuiteListComponent }    from './test-suite-list/test-suite-list.component';
+
+const testSuiteRoutes: Routes = [
+  { path: 'testsuites', component: TestSuiteListComponent }
+];
+
+@NgModule({
+  imports: [
+    RouterModule.forChild(testSuiteRoutes)
+  ],
+  exports: [
+    RouterModule
+  ]
+})
+export class TestSuiteRoutingModule { }

@@ -13,6 +13,7 @@ export class FilterCommonComponent implements OnInit {
   searchText: string = '';
   emptyOption: SelectOption = {id: '', name: ''};
   selectedOption: SelectOption = this.emptyOption;
+  @Input() showDropDown: boolean = true;
   @Input() itemName: string;
   @Input() items: [SelectOption];
   @Output() onFiltered = new EventEmitter<Filter>();

@@ -17,6 +17,7 @@ export class TestCaseListComponent implements OnInit {
   testCases: TestCase[] = [];
   categories: Category[] = [];
   itemLabel = 'Category';
+  itemPath: string = '/testcase';
   filter: TestCaseFilter = { searchText: '',  categoryId: '' };
 
   constructor(
@@ -45,10 +46,7 @@ export class TestCaseListComponent implements OnInit {
       searchText: filter.text,
       categoryId: filter.id
     };
-    this.testCaseService.filterTestCases(this.filter)
-      .subscribe((testCases: TestCase[]) => {
-        this.testCases = testCases;
-      });
+    this.filterTestCases();
   }
 
   filterTestCases() {

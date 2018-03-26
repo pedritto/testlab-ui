@@ -11,18 +11,11 @@
         <a [routerLink]="['/testcase', testCase.id]" class ="no-underline">
           <div class="test-case-number b pa2 br2 w-10 dib">{{ testCase.number }}</div>
           <div class="test-case-name pa1 w-50 dib">{{ testCase.name }}</div>
-          <div class="test-case-category f5 pa1 w-20 dib">{{ testCase.category.name }}</div>
+          <div class="item-detail-prop f5 pa1 w-20 dib">{{ testCase.category.name }}</div>
         </a>
-        <div class="delete-test-case f5 pa1 w-10 dib tc" (click)="onDelete(testCase)">Delete</div>
+        <div class="delete-item f5 pa1 w-10 dib tc" (click)="onDelete(testCase)">Delete</div>
       </div>
     </div>
   </div>
-  <div class="pt2">
-    <a [routerLink]="['/testcase', '']" class ="no-underline">
-      <div class="new-test-case f4 mb2 br2">
-        <div class="w-10 dib"></div>
-        <div class="b pa2 br2 w-20 dib">Add New</div>
-      </div>
-    </a>
-  </div>
+  <app-new-item-common [itemPath]=itemPath></app-new-item-common>
 </div>
