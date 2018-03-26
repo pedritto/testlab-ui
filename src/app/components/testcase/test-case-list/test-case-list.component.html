@@ -1,16 +1,10 @@
 <div class="w-50 pl3 mt3">
   <div class="title f3 mb3">Test Cases</div>
-  <div class="filter f4 pv3 mb3">
-    <div class="w-10 i dib tr">Filter:</div>
-    <div class="w-30 dib">
-      <input type="text" maxlength="10" class="f5 w-80 ph2" [(ngModel)]="searchText" (ngModelChange)="applyFilter()">
-    </div>
-    <div class="w-20 i dib tr">Category:</div>
-    <select class="f5 w-10 dib ph1" [(ngModel)]="selectedCategory" (ngModelChange)="applyFilter()">
-      <option [ngValue]="emptyOption"></option>
-      <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
-    </select>
-  </div>
+  <app-filter-common
+    [items]=categories
+    [itemName]=itemLabel
+    (onFiltered)="applyFilter($event)">
+  </app-filter-common>
   <div class="test-case-list">
     <div *ngFor="let testCase of testCases" class="items mb2">
       <div class="w-100 f4 dib">

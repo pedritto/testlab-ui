@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { TestCase } from 'types/testCase';
 import { TestCaseFilter } from 'types/testCaseFilter'
 import { Category } from 'types/category';
+import { Filter } from 'types/filter'
 import { TestCaseService } from 'app/services/graphql/test-case.service';
 import { CategoryService } from 'app/services/graphql/category.service';
 
@@ -15,9 +16,8 @@ export class TestCaseListComponent implements OnInit {
 
   testCases: TestCase[] = [];
   categories: Category[] = [];
-  searchText: string = '';
-  emptyOption: Category = {id: '', name: ''};
-  selectedCategory: Category = this.emptyOption;
+  itemLabel = 'Category';
+  filter: TestCaseFilter = { searchText: '',  categoryId: '' };
 
   constructor(
     private testCaseService: TestCaseService,
@@ -40,24 +40,28 @@ export class TestCaseListComponent implements OnInit {
       });
   }
 
-  applyFilter() {
-    const filter: TestCaseFilter = this.prepareFilter();
-    this.testCaseService.filterTestCases(filter)
+  applyFilter(filter: Filter) {
+    this.filter = {
+      searchText: filter.text,
+      categoryId: filter.id
+    };
+    this.testCaseService.filterTestCases(this.filter)
       .subscribe((testCases: TestCase[]) => {
         this.testCases = testCases;
       });
   }
 
-  prepareFilter(): TestCaseFilter {
-    const categoryId: string = this.selectedCategory.id;
-    const { searchText } = this;
-    return{ searchText, categoryId };
+  filterTestCases() {
+    this.testCaseService.filterTestCases(this.filter)
+      .subscribe((testCases: TestCase[]) => {
+        this.testCases = testCases;
+      });
   }
 
   onDelete(testCase){
     this.testCaseService
       .deleteTestCase(testCase.id)
-      .subscribe(() => this.applyFilter());
+      .subscribe(() => this.filterTestCases());
   }
 
 }

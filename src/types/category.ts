@@ -1,4 +1,4 @@
-export interface Category {
-  id: string,
-  name: string
+import { SelectOption } from './selectOption';
+
+export interface Category extends SelectOption {
 }

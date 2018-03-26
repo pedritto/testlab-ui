@@ -10,6 +10,7 @@ import { TestCaseService } from './services/graphql/test-case.service';
 import { CategoryService } from './services/graphql/category.service';
 
 import { TestCaseModule } from 'app/components/testcase/test-case.module';
+//import { FilterCommonComponent } from 'app/components/common/filter-common/filter-common.component';
 
 @NgModule({
   declarations: [
