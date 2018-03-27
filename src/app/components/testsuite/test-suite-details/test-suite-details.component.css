@@ -4,6 +4,40 @@
   color: darkslategray;
 }
 
+.test-case-container {
+  border-radius: 5px;
+  min-height: 300px;
+  max-height: 500px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+
+.test-case-list {
+  background-color: #f2efe8;
+  border: 1px solid #f2efe8;
+}
+
 .test-case-items {
   background-color: #c2d4d8;
+  border-radius: 5px;
+}
+
+.remove-test-case {
+  background-color: #b0aac2;
+  border-radius: 5px;
+}
+
+.items{
+  border-radius: 5px;
+}
+
+.test-case-selector {
+  background-color: #c2d4d8;
+  border-radius: 5px;
+}
+
+.test-cases-dnd {
+  background-color: #b0aac2;
+  border: 1px solid #b0aac2;
 }
