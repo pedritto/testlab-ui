@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { TestExecution } from 'types/testExecution';
+
+import { TestExecutionService } from 'app/services/graphql/test-execution.service';
+
 @Component({
   selector: 'app-test-execution-list',
   templateUrl: './test-execution-list.component.html',
@@ -7,9 +11,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestExecutionListComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private testExecutionService: TestExecutionService
+  ) {}
 
   ngOnInit() {
+    this.testExecutionService.fetchTestExecutions()
+      .subscribe((testExecution: TestExecution) => {
+        console.log(testExecution);
+      })
   }
 
 }

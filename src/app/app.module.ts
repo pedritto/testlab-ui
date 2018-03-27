@@ -9,6 +9,7 @@ import {GraphQLModule} from './apollo.config';
 import { CategoryService } from './services/graphql/category.service';
 import { TestCaseService } from './services/graphql/test-case.service';
 import { TestSuiteService } from './services/graphql/test-suite.service';
+import { TestExecutionService } from './services/graphql/test-execution.service';
 
 import { TestCaseModule } from 'app/components/testcase/test-case.module';
 import { TestSuiteModule } from 'app/components/testsuite/test-suite.module';
@@ -27,7 +28,7 @@ import { TestExecutionModule } from 'app/components/testexecution/test-execution
     TestSuiteModule,
     TestExecutionModule
   ],
-  providers: [CategoryService, TestCaseService, TestSuiteService],
+  providers: [CategoryService, TestCaseService, TestSuiteService, TestExecutionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
