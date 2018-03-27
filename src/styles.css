@@ -39,3 +39,19 @@ select {
 .item-detail-prop {
   color: #b0aac2;
 }
+
+.item-done {
+  background-color: #c2d4d8;
+  border-radius: 5px;
+  color: darkslategray;
+}
+
+.item-save {
+  background-color: #b0aac2;
+  border-radius: 5px;
+}
+
+.item-done:hover, .item-save:hover {
+  cursor: pointer;
+  background-color: #f2efe8;
+}

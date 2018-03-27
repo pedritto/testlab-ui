@@ -8,6 +8,8 @@ const TEST_SUITE_STRUCTURE = `
   name
   testCases {
     id
+    number
+    name
   }
 `;
 
@@ -31,6 +33,21 @@ export class TestSuiteService {
       })
       .valueChanges
       .map((response: any) => response.data.findAllTestSuites);
+  }
+
+  getTestSuite(id: string) {
+    return this.apollo
+      .watchQuery({
+        query: gql`
+          query TesSuiteQuery($id: ID!) {
+            findTestSuite(id: $id) {
+              ${TEST_SUITE_STRUCTURE}
+            }
+          }`,
+        variables: { id },
+      })
+      .valueChanges
+      .map((response: any) => response.data.findTestSuite);
   }
 
   deleteTestSuite(id: string) {

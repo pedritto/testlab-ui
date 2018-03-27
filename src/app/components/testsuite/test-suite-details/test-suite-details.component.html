@@ -1,0 +1,40 @@
+<div class="w-33 pl3 mt3">
+  <div class="title f3 mb3">Test Case Detail</div>
+  <form class="test-suite-form f4 pa3" [formGroup]="testSuiteForm">
+    <div>
+      <label for="testCaseName" class="w-20 i tr dib">Name:</label>
+      <input id="testCaseName" class="w-60 f5 ph2" formControlName="name">
+    </div>
+    <div class="f6 mb1 ph3">
+      <div class="w-20 dib"></div>
+      <div class="light-red w-60 dib">
+        <div *ngIf="name.errors && name.errors.required && name.touched">
+          This field is required
+        </div>
+        <div *ngIf="name.errors && name.errors.pattern">
+          Invalid
+        </div>
+      </div>
+    </div>
+    <div class="test-case-list">
+      <div class="dib w-20">
+        <div class="i tr pb2">Test Cases:</div>
+      </div>
+      <div *ngFor="let testCase of testCases" class="test-case-items mb2 w-60">
+        <div class="f4 dib w-100">
+          <div class="dib w-30"></div>
+          <div class="test-case-number b pa2 br2 w-20 dib">{{ testCase.number }}</div>
+          <div class="test-case-name pa1 w-30 dib">{{ testCase.name }}</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="w-20 dib"></div>
+      <a routerLink="/testsuites" routerLinkActive="active" class="route-link no-underline">
+        <div class="item-done w-20 dib tc">Done</div>
+      </a>
+      <div class="w-20 dib"></div>
+      <div class="item-save w-20 dib tc" (click)="onSave()">Save</div>
+    </div>
+  </form>
+</div>
