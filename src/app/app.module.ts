@@ -12,6 +12,7 @@ import { TestSuiteService } from './services/graphql/test-suite.service';
 
 import { TestCaseModule } from 'app/components/testcase/test-case.module';
 import { TestSuiteModule } from 'app/components/testsuite/test-suite.module';
+import { TestExecutionModule } from 'app/components/testexecution/test-execution.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { TestSuiteModule } from 'app/components/testsuite/test-suite.module';
     GraphQLModule,
     FormsModule,
     TestCaseModule,
-    TestSuiteModule
+    TestSuiteModule,
+    TestExecutionModule
   ],
   providers: [CategoryService, TestCaseService, TestSuiteService],
   bootstrap: [AppComponent]
