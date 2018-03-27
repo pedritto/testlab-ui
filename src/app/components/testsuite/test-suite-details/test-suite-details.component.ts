@@ -139,8 +139,8 @@ export class TestSuiteDetailsComponent implements OnInit {
       if (id) {
         this.testSuiteService
           .updateTestSuite(id, this.prepareInput())
-          .subscribe((testCase: TestCase) => {
-            this.testCase = testCase;
+          .subscribe((testSuit: TestSuit) => {
+            this.setValues(testSuit);
           });
       } else {
         this.testSuiteService
