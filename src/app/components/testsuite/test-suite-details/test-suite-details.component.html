@@ -21,7 +21,7 @@
       <div *ngFor="let testCase of linkedTestCases" class="test-case-items mb2">
           <div class="test-case-number b pa2 br2 w-20 dib">{{ testCase.number }}</div>
           <div class="test-case-name pa1 w-50 dib">{{ testCase.name }}</div>
-          <div *ngIf="linkedTestCases.length > 1" class="remove-test-case f5 pv1 w-10 dib tc" (click)="onRemove(testCase)">Remove</div>
+          <div *ngIf="linkedTestCases.length > 1" class="remove-test-case f5 pv1 w-10 dib tc mr2 mt2" (click)="onRemove(testCase)">Clear</div>
       </div>
     </div>
     <div>

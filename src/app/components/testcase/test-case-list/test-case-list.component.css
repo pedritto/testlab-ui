@@ -24,3 +24,7 @@
 .test-case-name {
   color: darkslategray;
 }
+
+.delete-item {
+  float: right;
+}

@@ -26,6 +26,7 @@
 .remove-test-case {
   background-color: #b0aac2;
   border-radius: 5px;
+  float: right;
 }
 
 .items{
