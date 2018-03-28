@@ -94,7 +94,7 @@ export class TestSuiteService {
         input
       }
     })
-      .map((response: any) => response.data.updateTestCase);
+      .map((response: any) => response.data.updateTestSuite);
   }
 
   // @TODO: implement on server side

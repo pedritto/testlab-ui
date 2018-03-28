@@ -1,8 +1,9 @@
 <div *ngIf="testExecution" class="test-execution-details w-50 pl3 mt3">
   <div class="title f3 mb3">Test Execution</div>
   <div class="mb2">
-    <div class="execution-name f3 dib w-60 pa2">{{ testExecution.name}}</div>
+    <div class="execution-name f3 dib w-40 pa2">{{ testExecution.name}}</div>
     <div class="execution-name f3 dib w-20 pa2">{{ testExecution.created | date: 'dd/MM/yyyy'}}</div>
+    <div class="execution-name f3 dib w-20 pa2">{{ testExecution.environment.name }}</div>
     <app-test-execution-status
       class="dib mr2"
       [testExecution]=testExecution

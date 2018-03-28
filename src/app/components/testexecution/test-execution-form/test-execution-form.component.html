@@ -1,0 +1,39 @@
+<div class="w-30 pl3 mt3">
+  <div class="title f3 mb3">New Test Execution</div>
+  <form class="test-execution-form f4 pa3" [formGroup]="testExecutionForm">
+    <div class="test-suite-input mb1 w-100">
+      <label for="testSuiteSelector" class="w-30 i tr dib">Test Suite:</label>
+      <select id="testSuiteSelector" class="w-50 f5 ph2" formControlName="testSuite">
+        <option *ngFor="let t of testSuites" [ngValue]="t">
+          {{t.name}}
+        </option>
+      </select>
+    </div>
+    <div class="f6 mb1 ph3">
+      <div class="w-30 dib"></div>
+      <div class="light-red w-50 dib">
+        <div *ngIf="testSuite.errors && testSuite.errors.required && testSuite.touched">
+          This field is required
+        </div>
+      </div>
+    </div>
+    <div class="environment-input mb1 w-100">
+      <label for="environmentSelector" class="w-30 i tr dib">Environment:</label>
+      <select id="environmentSelector" class="w-20 f5 ph2" formControlName="environment">
+        <option *ngFor="let e of environments" [ngValue]="e">
+          {{e.name}}
+        </option>
+      </select>
+    </div>
+    <div class="f6 mb1 ph3">
+      <div class="w-30 dib"></div>
+      <div class="light-red w-50 dib">
+        <div *ngIf="environment.errors && environment.errors.required && environment.touched">
+          This field is required
+        </div>
+      </div>
+    </div>
+    <div class="w-60 dib"></div>
+    <div class="item-save w-20 dib tc" (click)="onSave()">Save</div>
+  </form>
+</div>

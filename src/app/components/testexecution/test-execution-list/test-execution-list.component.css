@@ -1,3 +1,7 @@
+a > div {
+  color: darkslategray;
+}
+
 .status {
   float: right;
 }

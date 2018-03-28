@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClickOutsideModule } from 'ng4-click-outside';
 
 import { TestExecutionDetailsComponent }    from './test-execution-details/test-execution-details.component';
+import { TestExecutionFormComponent }    from './test-execution-form/test-execution-form.component';
 import { TestExecutionListComponent }    from './test-execution-list/test-execution-list.component';
 import { TestExecutionStatusComponent }    from './test-execution-status/test-execution-status.component';
 import { TestResultComponent }    from './test-result/test-result.component';
@@ -22,6 +23,7 @@ import { AppCommonModule } from 'app/components/common/app-common.module';
   ],
   declarations: [
     TestExecutionDetailsComponent,
+    TestExecutionFormComponent,
     TestExecutionListComponent,
     TestExecutionStatusComponent,
     TestResultComponent

@@ -12,7 +12,7 @@ import { TestExecutionService } from 'app/services/graphql/test-execution.servic
 export class TestExecutionListComponent implements OnInit {
 
   testExecutions: TestExecution[];
-  itemPath: string = '/execution';
+  newItemPath: string = '/newexecution';
 
   constructor(
     private testExecutionService: TestExecutionService

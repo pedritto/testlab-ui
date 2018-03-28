@@ -12,6 +12,7 @@
           <div class="pa2 br2 w-10 dib"></div>
           <div class="test-execution-name pa1 w-50 dib">{{ testExecution.name }}</div>
           <div class="f5 pa1 w-10 dib">{{ testExecution.created | date: 'dd/MM/yyyy'}}</div>
+          <div class="f5 pa1 w-10 dib">{{ testExecution.environment.name }}</div>
           <div class="status f5 pa1 dib mr2">
             <app-test-execution-status
               [testExecution]=testExecution
@@ -22,5 +23,5 @@
       </div>
     </div>
   </div>
-  <app-new-item-common [itemPath]=itemPath></app-new-item-common>
+  <app-new-item-common [itemPath]=newItemPath></app-new-item-common>
 </div>
