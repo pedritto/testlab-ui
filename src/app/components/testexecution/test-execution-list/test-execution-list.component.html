@@ -1,3 +1,26 @@
-<p>
-  test-execution-list works!
-</p>
+<div class="w-50 pl3 mt3">
+  <div class="title f3 mb3">Test Executions</div>
+  <app-filter-common
+    [items]=categories
+    [showDropDown]=false
+    (onFiltered)="applyFilter($event)">
+  </app-filter-common>
+  <div class="test-execution-list">
+    <div *ngFor="let testExecution of testExecutions" class="items mb2">
+      <div class="w-100 f4 dib">
+        <a [routerLink]="['/execution', testExecution.id]" class ="no-underline">
+          <div class="pa2 br2 w-10 dib"></div>
+          <div class="test-execution-name pa1 w-50 dib">{{ testExecution.name }}</div>
+          <div class="f5 pa1 w-10 dib">{{ testExecution.created | date: 'dd/MM/yyyy'}}</div>
+          <div class="status f5 pa1 dib mr2">
+            <app-test-execution-status
+              [testExecution]=testExecution
+            >
+            </app-test-execution-status>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <app-new-item-common [itemPath]=itemPath></app-new-item-common>
+</div>

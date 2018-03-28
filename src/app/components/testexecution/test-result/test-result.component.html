@@ -1,0 +1,10 @@
+<div *ngIf="!editMode" class="status {{ background }} pv1" (click)="onEdit()">
+  <span>{{ testCaseExecution.testResult }}</span>
+</div>
+<div *ngIf="editMode" class="status">
+  <div (clickOutside)="onClickedOutside($event)" [delayClickOutsideInit]="true" class="options">
+    <div *ngFor="let value of values">
+      <div (click)="onChange(value)" class="option {{ getBackground(value) }} pa1">{{ value }}</div>
+    </div>
+  </div>
+</div>

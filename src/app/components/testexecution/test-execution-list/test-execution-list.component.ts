@@ -11,14 +11,17 @@ import { TestExecutionService } from 'app/services/graphql/test-execution.servic
 })
 export class TestExecutionListComponent implements OnInit {
 
+  testExecutions: TestExecution[];
+  itemPath: string = '/execution';
+
   constructor(
     private testExecutionService: TestExecutionService
   ) {}
 
   ngOnInit() {
     this.testExecutionService.fetchTestExecutions()
-      .subscribe((testExecution: TestExecution) => {
-        console.log(testExecution);
+      .subscribe((testExecutions: TestExecution[]) => {
+        this.testExecutions = testExecutions;
       })
   }
 

@@ -1,0 +1,28 @@
+.status-container {
+  color: darkslategray;
+}
+
+.status {
+  border: 1px solid #c2d4d8;
+  border-radius: 2rem;
+}
+
+.passed {
+  background-color: lawngreen;
+}
+
+.failed {
+  background-color: orangered;
+}
+
+.blocked {
+  background-color: yellow;
+}
+
+.waiting {
+  background-color: #f2efe8;
+}
+
+.result {
+  vertical-align: middle;
+}

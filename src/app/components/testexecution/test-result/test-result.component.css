@@ -1,0 +1,30 @@
+.status {
+  border-radius: 5px;
+}
+
+.options {
+  background-color: #c2d4d8;
+  border-radius: 5px;
+  position: absolute;
+}
+
+.option {
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.passed {
+  background-color: lawngreen;
+}
+
+.failed {
+  background-color: orangered;
+}
+
+.blocked {
+  background-color: yellow;
+}
+
+.waiting {
+  background-color: #f2efe8;
+}

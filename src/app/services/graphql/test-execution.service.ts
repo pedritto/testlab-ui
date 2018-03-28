@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import 'rxjs/add/operator/map';
 
 import { TestExecutionInput } from  'types/testExecutionInput';
+import { TestCaseExecutionInput } from  'types/testCaseExecutionInput';
 
 const TEST_EXECUTION_STRUCTURE = `
     id
@@ -63,7 +64,7 @@ export class TestExecutionService {
       .map((response: any) => response.data.getTestExecution);
   }
 
-  createTestSuite(input: TestExecutionInput) {
+  createTestExecution(input: TestExecutionInput) {
     return this.apollo.mutate({
       mutation: gql`
           mutation CreateTestExecution($input: TestExecutionInput!) {
@@ -77,5 +78,30 @@ export class TestExecutionService {
     })
       .map((response: any) => response.data.newTestExecution);
   }
+
+  updateTestResult(input: TestCaseExecutionInput) {
+    return this.apollo.mutate({
+      mutation: gql`
+        mutation UpdateTestResultMutation($input: TestCaseExecutionInput!) {
+          updateTestResult(input: $input) {
+            id
+            number
+            name
+            description
+            category {
+              id
+              name
+            }
+            lastModified
+            testResult
+          }
+        }`,
+      variables: {
+        input
+      }
+    })
+      .map((response: any) => response.data.updateTestResult);
+  }
+
 
 }

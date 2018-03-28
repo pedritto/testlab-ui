@@ -1,0 +1,16 @@
+.test-execution-details {
+  color: darkslategray;
+}
+
+app-test-execution-status {
+  float: right;
+}
+
+.test-case-executions {
+  background-color: #c2d4d8;
+  border-radius: 5px;
+}
+
+.test-result {
+  float: right;
+}
